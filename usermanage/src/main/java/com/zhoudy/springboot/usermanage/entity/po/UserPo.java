@@ -3,18 +3,13 @@ package com.zhoudy.springboot.usermanage.entity.po;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.experimental.Accessors;
 
 import javax.validation.constraints.NotBlank;
 
 /***
  * 用户信息持久化层
  */
-//@Data
-@Getter
-@Setter
+@Data
 @ApiModel(value="UserPo",description = "用户信息")
 public class UserPo {
     @ApiModelProperty(name="name",value="姓名",required=true)

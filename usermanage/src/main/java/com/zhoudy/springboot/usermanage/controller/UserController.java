@@ -44,8 +44,9 @@ public class UserController {
     @GetMapping("deleteUser")
     @ApiOperation(value="删除用户")
     @ApiParam(name="name",value="姓名")
-    public void deleteUser(@RequestParam String name){
-        userService.deleteUser(name);
+    @ResponseBody
+    public void deleteUser(@RequestParam Integer id){
+        userService.deleteUser(id);
     }
 
 }

@@ -15,7 +15,7 @@
 
 <!--	</update>-->
 
-	<delete id="deleteUser" parameterType="java.lang.String">
-		delete from userinfo where name = #{name}
+	<delete id="deleteUser" parameterType="java.lang.Integer">
+		delete from userinfo where id = #{id}
 	</delete>
 </mapper>

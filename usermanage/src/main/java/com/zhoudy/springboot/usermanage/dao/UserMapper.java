@@ -10,5 +10,5 @@ public interface UserMapper {
     List<UserVo> getUser();
     void saveUser(UserPo userPo);
     //    void updateUser(String name,UserPo userPo);
-    void deleteUser(String name);
+    void deleteUser(Integer id);
 }

@@ -31,7 +31,7 @@ public class UserServiceImpl implements IUserService {
 //    }
 
     @Override
-    public void deleteUser(String name){
-        userMapper.deleteUser(name);
+    public void deleteUser(Integer id){
+        userMapper.deleteUser(id);
     }
 }

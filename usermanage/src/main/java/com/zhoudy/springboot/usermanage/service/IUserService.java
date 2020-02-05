@@ -9,5 +9,5 @@ public interface IUserService {
     List<UserVo> getUser();
     void saveUser(UserPo userPo);
 //    void updateUser(String name,UserPo userPo);
-    void deleteUser(String name);
+    void deleteUser(Integer name);
 }

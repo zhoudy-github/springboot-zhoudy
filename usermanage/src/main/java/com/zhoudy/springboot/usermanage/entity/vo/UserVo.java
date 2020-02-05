@@ -8,6 +8,7 @@ import lombok.Data;
  */
 @Data
 public class UserVo {
+    public Integer id;
     public String name;
     public String sex;
     public String age;
