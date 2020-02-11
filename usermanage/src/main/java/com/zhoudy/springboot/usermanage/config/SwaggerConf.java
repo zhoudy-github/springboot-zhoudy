@@ -33,8 +33,8 @@ public class SwaggerConf {
      */
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("标题")
-                .description("API 描述")
+                .title("用户登录")
+                .description("用户信息")
                 .version("1.0")
                 .build();
     }

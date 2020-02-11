@@ -1,5 +1,6 @@
 package com.zhoudy.springboot.usermanage.controller;
 
+import com.zhoudy.springboot.usermanage.entity.po.LoginInfoPo;
 import com.zhoudy.springboot.usermanage.entity.po.UserPo;
 import com.zhoudy.springboot.usermanage.entity.vo.UserVo;
 import com.zhoudy.springboot.usermanage.service.IUserService;
@@ -10,14 +11,37 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-@Api("用户信息相关接口")
 @Controller
+@CrossOrigin(origins = "*")
+@Api(value="UserController",description="用户信息相关接口")
 public class UserController {
 
     @Autowired
     private IUserService userService;
+
+    @PostMapping("loginData")
+    @ResponseBody
+    @ApiOperation(value="登录测试")
+    public Map<String ,Object> login(LoginInfoPo loginInfoPo){
+        System.out.println("请求用户名是："+loginInfoPo.getUsername());
+        System.out.println("请求密码是："+loginInfoPo.getPassword());
+        Map rst = new HashMap();
+        if("admin".equals(loginInfoPo.getUsername()) &&"1111111".equals(loginInfoPo.getPassword())){
+            List<UserVo> userList = userService.getUser();
+            rst.put("code","200");
+            rst.put("msg","用户名密码ok");
+            rst.put("data",userList);
+        }else{
+            rst.put("code","200");
+            rst.put("msg","密码不正确");
+        }
+        return rst;
+    }
+
 
     @GetMapping("getUserData")
     @ResponseBody
