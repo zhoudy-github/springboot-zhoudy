@@ -1,5 +1,6 @@
 package com.zhoudy.springboot.usermanage.controller;
 
+import com.zhoudy.springboot.usermanage.annotation.ExecuteTime;
 import com.zhoudy.springboot.usermanage.entity.po.LoginInfoPo;
 import com.zhoudy.springboot.usermanage.entity.po.UserPo;
 import com.zhoudy.springboot.usermanage.entity.vo.UserVo;
@@ -26,6 +27,7 @@ public class UserController {
     @PostMapping("loginData")
     @ResponseBody
     @ApiOperation(value="登录测试")
+    @ExecuteTime()
     public Map<String ,Object> login(LoginInfoPo loginInfoPo){
         System.out.println("请求用户名是："+loginInfoPo.getUsername());
         System.out.println("请求密码是："+loginInfoPo.getPassword());
@@ -46,7 +48,13 @@ public class UserController {
     @GetMapping("getUserData")
     @ResponseBody
     @ApiOperation(value="获取用户信息",httpMethod = "GET")
+    @ExecuteTime()
     public List<UserVo> getUser(){
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         List<UserVo> userList = userService.getUser();
         return userList;
     }
