@@ -4,7 +4,7 @@ server:
     context-path: /user-api
 spring:
   profiles:
-    active: dev
+    active: jdbc,redis,task
   devtools:
     restart:
       enabled: true  #设置开启热部署

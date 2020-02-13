@@ -1,4 +1,4 @@
-package com.zhoudy.springboot.usermanage;
+package com.zhoudy.springboot.usermanage.redis;
 
 import com.zhoudy.springboot.usermanage.support.redis.object.UserCache;
 import org.junit.Test;

@@ -1,17 +1,16 @@
-package com.zhoudy.springboot.usermanage;
+package com.zhoudy.springboot.usermanage.redis;
 
-import com.zhoudy.springboot.usermanage.support.redis.dao.UserCacheDao;
+import com.zhoudy.springboot.usermanage.Application;
 import com.zhoudy.springboot.usermanage.support.redis.object.UserCache;
 import com.zhoudy.springboot.usermanage.support.redis.service.UserCacheService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.stereotype.Service;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = UsermanageApplication.class)
+@SpringBootTest(classes = Application.class)
 public class userCacheServiceTest {
 
     @Autowired
