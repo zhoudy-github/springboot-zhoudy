@@ -8,7 +8,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 @Slf4j
 @Component
-public class SpringTaskDemo {
+public class JobDemo {
 
     private final AtomicInteger counts =  new AtomicInteger();
     @Scheduled(fixedRate = 2000)
