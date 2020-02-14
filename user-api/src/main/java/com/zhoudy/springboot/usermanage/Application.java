@@ -1,16 +1,15 @@
 package com.zhoudy.springboot.usermanage;
 
 import org.mybatis.spring.annotation.MapperScan;
+import org.quartz.SchedulerException;
 import org.springframework.boot.Banner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.scheduling.annotation.EnableScheduling;
-import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication
 @MapperScan("com.zhoudy.springboot.usermanage.dao")
 public class Application {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SchedulerException {
 //        SpringApplication.run(UsermanageApplication.class, args);
         SpringApplication springApplication = new SpringApplication(Application.class);
         springApplication.setBannerMode(Banner.Mode.OFF);

@@ -1,67 +1,65 @@
-package com.zhoudy.springboot.usermanage.task;
+package com.zhoudy.springboot.usermanage.controller;
 
-
-import com.zhoudy.springboot.usermanage.Application;
 import com.zhoudy.springboot.usermanage.support.task.quartzjdbc.QuartzJdbcJob01;
 import com.zhoudy.springboot.usermanage.support.task.quartzjdbc.QuartzJdbcJob02;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.quartz.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-/*****
- * Scheduler 手动设置
- * 推荐使用 Scheduler 手动设置。
- */
-@RunWith(SpringRunner.class)
-@SpringBootTest(classes = Application.class)
-public class QuartzJdbcScheduleTest {
+@Controller
+@RequestMapping(value="quartzCtrl")
+@Api(value="QuartzJdbcScheduleTestCtrl",description="定时任务手动设置测试")
+public class QuartzJdbcScheduleTestCtrl {
 
     @Autowired
     private Scheduler scheduler;
 
-    @Test
+    @GetMapping(value = "job01Config")
+    @ApiOperation(value="设置job1")
     public void addQuartzJdbcJob01Config() throws SchedulerException{
         //创建JobDetail
         JobDetail jobDetail= JobBuilder
                 /*名字*/
                 .newJob(QuartzJdbcJob01.class)
                 /*//没有 Trigger 关联的时候任务是否被保留。因为创建 JobDetail 时，还没 Trigger 指向它，所以需要设置为 true ，表示保留。*/
-                .withIdentity("JdbcJob01")
+                .withIdentity("shouDongshezhiJdbcJob01")
                 .storeDurably()
                 .build();
         //创建Trigger
         SimpleScheduleBuilder scheduleBuilder=SimpleScheduleBuilder.simpleSchedule()
                 /*频率*/
-                .withIntervalInSeconds(5)
+                .withIntervalInSeconds(10)
                 /*次数*/
-        .withRepeatCount(5);
+                .withRepeatCount(10);
         Trigger trigger = TriggerBuilder.newTrigger()
                 /*对应job*/
                 .forJob(jobDetail)
                 /*名字*/
-                .withIdentity("JdbcJob01Trigger")
+                .withIdentity("shouDongshezhiJdbcJob01Trigger")
                 /*对应Schedule*/
                 .withSchedule(scheduleBuilder)
                 .build();
         //添加调度任务
         scheduler.scheduleJob(jobDetail,trigger);
     }
-    @Test
+
+    @GetMapping(value = "job02Config")
+    @ApiOperation(value="设置job2")
     public void addQuartzJdbcJob02Config() throws SchedulerException {
         // 创建 JobDetail
         JobDetail jobDetail = JobBuilder.newJob(QuartzJdbcJob02.class)
-                .withIdentity("JdbcJob02")
+                .withIdentity("shouDongshezhiJdbcJob02")
                 .storeDurably()
                 .build();
         // 创建 Trigger
-        CronScheduleBuilder scheduleBuilder = CronScheduleBuilder.cronSchedule("0/10 * * * * ? *");
+        CronScheduleBuilder scheduleBuilder = CronScheduleBuilder.cronSchedule("0/5 * * * * ? *");
         Trigger trigger = TriggerBuilder.newTrigger()
                 .forJob(jobDetail)
-                .withIdentity("JdbcJob02Trigger")
+                .withIdentity("shouDongshezhiJdbcJob02Trigger")
                 .withSchedule(scheduleBuilder)
                 .build();
         // 添加调度任务

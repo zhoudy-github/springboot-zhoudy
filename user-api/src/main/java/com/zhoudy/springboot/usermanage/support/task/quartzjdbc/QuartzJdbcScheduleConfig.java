@@ -21,7 +21,7 @@ public class QuartzJdbcScheduleConfig {
         public JobDetail job01Detail(){
             return JobBuilder.newJob(QuartzJdbcJob01.class)
                     // 名字为 demoJob01
-                    .withIdentity("QuartzJdbcJob01")
+                    .withIdentity("autoQuartzJdbcJob01")
                     // 没有 Trigger 关联的时候任务是否被保留。因为创建 JobDetail 时，
                     // 还没 Trigger 指向它，所以需要设置为 true ，表示保留
                     .storeDurably()
@@ -36,7 +36,7 @@ public class QuartzJdbcScheduleConfig {
                     .withRepeatCount(2);
             return TriggerBuilder.newTrigger()
                     .forJob(job01Detail())// 对应 Job 为 QuartzJdbcJob01
-                    .withIdentity("01JdbcTrigger")// 名字为 QuartzJob01Trigger
+                    .withIdentity("auto01JdbcTrigger")// 名字为 QuartzJob01Trigger
                     .withSchedule(simpleScheduleBuilder)// 对应 Schedule 为 scheduleBuilder
                     .build();
         }
@@ -48,7 +48,7 @@ public class QuartzJdbcScheduleConfig {
         //创建 QuartzJdbcJob02 的 JobDetail Bean 对象。
         public JobDetail job02Detail(){
             return JobBuilder.newJob(QuartzJdbcJob02.class)
-                    .withIdentity("QuartzJdbcJob02")
+                    .withIdentity("autoQuartzJdbcJob02")
                     .storeDurably()
                     .build();
         }
@@ -59,7 +59,7 @@ public class QuartzJdbcScheduleConfig {
             //Trigger构造器
             return TriggerBuilder.newTrigger()
                     .forJob(job02Detail())
-                    .withIdentity("02JdbcTrigger")
+                    .withIdentity("auto02JdbcTrigger")
                     .withSchedule(cronScheduleBuilder)
                     .build();
         }
