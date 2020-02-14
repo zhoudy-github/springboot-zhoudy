@@ -1,25 +1,27 @@
-package com.zhoudy.springboot.usermanage.support.task.quartz;
+
+package com.zhoudy.springboot.usermanage.support.task.quartzjdbc;
 
 import lombok.extern.slf4j.Slf4j;
 import org.quartz.*;
-import org.springframework.boot.autoconfigure.quartz.QuartzProperties;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
-//@Configuration
+@Configuration
 @Slf4j
-public class QuartzScheduleConfig {
+public class QuartzJdbcScheduleConfig {
 
     /**
      *  JobDetail 和 Trigger 一般是成双成对出现
      */
+
     //配置QuartzJob01
     public static class Job01Config{
         @Bean
         //创建 QuartzJdbcJob01 的 JobDetail Bean 对象。
         public JobDetail job01Detail(){
-            return JobBuilder.newJob(QuartzJob01.class)
+            return JobBuilder.newJob(QuartzJdbcJob01.class)
                     // 名字为 demoJob01
-                    .withIdentity("QuartzJob01")
+                    .withIdentity("QuartzJdbcJob01")
                     // 没有 Trigger 关联的时候任务是否被保留。因为创建 JobDetail 时，
                     // 还没 Trigger 指向它，所以需要设置为 true ，表示保留
                     .storeDurably()
@@ -34,7 +36,7 @@ public class QuartzScheduleConfig {
                     .withRepeatCount(2);
             return TriggerBuilder.newTrigger()
                     .forJob(job01Detail())// 对应 Job 为 QuartzJdbcJob01
-                    .withIdentity("01Trigger")// 名字为 QuartzJob01Trigger
+                    .withIdentity("01JdbcTrigger")// 名字为 QuartzJob01Trigger
                     .withSchedule(simpleScheduleBuilder)// 对应 Schedule 为 scheduleBuilder
                     .build();
         }
@@ -45,8 +47,8 @@ public class QuartzScheduleConfig {
         @Bean
         //创建 QuartzJdbcJob02 的 JobDetail Bean 对象。
         public JobDetail job02Detail(){
-            return JobBuilder.newJob(QuartzJob02.class)
-                    .withIdentity("QuartzJob02")
+            return JobBuilder.newJob(QuartzJdbcJob02.class)
+                    .withIdentity("QuartzJdbcJob02")
                     .storeDurably()
                     .build();
         }
@@ -57,9 +59,10 @@ public class QuartzScheduleConfig {
             //Trigger构造器
             return TriggerBuilder.newTrigger()
                     .forJob(job02Detail())
-                    .withIdentity("02Trigger")
+                    .withIdentity("02JdbcTrigger")
                     .withSchedule(cronScheduleBuilder)
                     .build();
         }
     }
 }
+
