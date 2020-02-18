@@ -2,7 +2,7 @@ spring:
 # Spring Task 调度任务的配置，对应 TaskSchedulingProperties 配置类
   task:
     scheduling:
-      thread-name-prefix: zhoudy-demo- # 线程池的线程名的前缀。默认为 scheduling- ，建议根据自己应用来设置
+      thread-name-prefix: zhoudy-AsyncDemo- # 线程池的线程名的前缀。默认为 scheduling- ，建议根据自己应用来设置
       pool:
         size: 10 # 线程池大小。默认为 1 ，根据自己应用来设置
 
@@ -26,7 +26,7 @@ spring:
   quartz:
     scheduler-name: clusteredScheduler  # Scheduler 名字。默认为 schedulerName
     job-store-type: jdbc # Job 存储器类型。默认为 memory 表示内存，可选 jdbc 使用数据库
-    auto-startup: true #quartz是否自动启动
+    auto-startup: false #quartz是否自动启动
     startup-delay: 0 #延迟N秒启动
     wait-for-jobs-to-complete-on-shutdown: true #应用关闭时，是否等待定时任务执行完成。默认为 false ，建议设置为 true
     overwrite-existing-jobs: false #是否覆盖已有JOB的配置

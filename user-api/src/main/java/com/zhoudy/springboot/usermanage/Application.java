@@ -5,9 +5,11 @@ import org.quartz.SchedulerException;
 import org.springframework.boot.Banner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableAsync;
 
 @SpringBootApplication
 @MapperScan("com.zhoudy.springboot.usermanage.dao")
+@EnableAsync
 public class Application {
     public static void main(String[] args) throws SchedulerException {
 //        SpringApplication.run(UsermanageApplication.class, args);
