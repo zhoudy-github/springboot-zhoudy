@@ -1,8 +1,10 @@
 package com.zhoudy.springboot.usermanage.entity.po;
 
+import lombok.Builder;
 import lombok.Data;
 
 @Data
+@Builder
 public class UserInfoPo {
     private Integer id;
 

@@ -4,7 +4,7 @@ server:
     context-path: /user-api
 spring:
   profiles:
-    active: jdbc,redis,task
+    active: jdbc,redis,task,async,rocketMq
   devtools:
     restart:
       enabled: true  #设置开启热部署
